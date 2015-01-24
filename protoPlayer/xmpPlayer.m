@@ -369,7 +369,7 @@
     {
         minutes = ((timeValue + 500) / 60000);
         seconds = ((timeValue + 500) / 1000) % 60;
-        NSString *timeReturn = [[NSString alloc] initWithFormat:@"%02d:%d", minutes, seconds];
+        NSString *timeReturn = [[NSString alloc] initWithFormat:@"%02d:%02d", minutes, seconds];
         return timeReturn;
     }
 }
@@ -377,6 +377,13 @@
 -(BOOL)isPlaying
 {
     if(xmp_get_player(class_context, XMP_PLAYER_STATE) == XMP_STATE_PLAYING)
+    {
+        return YES;
+    }
+    Boolean isRunning;
+    int err;
+    err = AUGraphIsRunning(myGraph, &isRunning);
+    if (isRunning)
     {
         return YES;
     }

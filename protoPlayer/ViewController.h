@@ -13,7 +13,14 @@ xmpPlayer *ourPlayer;
 
 @interface ViewController : NSViewController
 
+{
+    IBOutlet NSTextField *moduleName;
+    IBOutlet NSTextField *patternRow;
+    IBOutlet NSSlider *musicSlider;
+    
+}
 -(IBAction)playbackControl:(id)sender;
+-(IBAction)loadProto:(id)sender;
 
 @end
 

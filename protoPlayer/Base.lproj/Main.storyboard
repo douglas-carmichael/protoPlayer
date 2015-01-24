@@ -677,7 +677,7 @@
                                 <constraints>
                                     <constraint firstAttribute="width" constant="78" id="y9O-V6-sh5"/>
                                 </constraints>
-                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="center" title="patternRow" id="z1x-vr-vMO" userLabel="patternCell">
+                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="center" id="z1x-vr-vMO" userLabel="patternCell">
                                     <font key="font" metaFont="system"/>
                                     <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                                     <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
@@ -685,7 +685,7 @@
                             </textField>
                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="GUF-H9-4aT" userLabel="moduleName">
                                 <rect key="frame" x="252" y="111" width="90" height="17"/>
-                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="center" title="moduleName" id="pEa-yE-K9q">
+                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="center" placeholderString="" id="pEa-yE-K9q">
                                     <font key="font" metaFont="system"/>
                                     <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                                     <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
@@ -751,6 +751,16 @@
                                     <action selector="playbackControl:" target="XfG-lQ-9wD" id="AKt-kg-NJi"/>
                                 </connections>
                             </button>
+                            <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="B5f-ME-YCQ">
+                                <rect key="frame" x="187" y="71" width="106" height="23"/>
+                                <buttonCell key="cell" type="smallSquare" title="Load" bezelStyle="smallSquare" imagePosition="overlaps" alignment="center" state="on" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="0QG-44-nf7">
+                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                    <font key="font" metaFont="system"/>
+                                </buttonCell>
+                                <connections>
+                                    <action selector="loadProto:" target="XfG-lQ-9wD" id="zv2-WT-od8"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <constraints>
                             <constraint firstItem="PsM-lr-8aQ" firstAttribute="top" secondItem="m2S-Jp-Qdl" secondAttribute="top" constant="20" symbolic="YES" id="2mC-Ee-jBd"/>
@@ -772,6 +782,11 @@
                             <constraint firstAttribute="trailing" secondItem="TnJ-vn-qk0" secondAttribute="trailing" constant="20" symbolic="YES" id="vae-sS-4as"/>
                         </constraints>
                     </view>
+                    <connections>
+                        <outlet property="moduleName" destination="GUF-H9-4aT" id="nQb-9G-fXM"/>
+                        <outlet property="musicSlider" destination="TnJ-vn-qk0" id="5AX-92-OhV"/>
+                        <outlet property="patternRow" destination="PsM-lr-8aQ" id="6to-cu-Qsh"/>
+                    </connections>
                 </viewController>
                 <customObject id="rPt-NT-nkU" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
