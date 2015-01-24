@@ -186,40 +186,24 @@
     
     // Scan for module information and make it available in our NSDictionary
     struct xmp_module_info pModuleInfo;
-    NSMutableDictionary *tempModuleInfo;
     xmp_get_module_info(class_context, &pModuleInfo);
-    
-    NSString *moduleName = [NSString stringWithUTF8String:pModuleInfo.mod->name];
-    NSString *moduleType = [NSString stringWithUTF8String:pModuleInfo.mod->type];
-    NSNumber *moduleNumPatterns = [NSNumber numberWithInt:pModuleInfo.mod->pat];
-    NSNumber *moduleNumTracks = [NSNumber numberWithInt:pModuleInfo.mod->trk];
-    NSNumber *moduleTracksPerPattern = [NSNumber numberWithInt:pModuleInfo.mod->chn];
-    NSNumber *moduleInstruments = [NSNumber numberWithInt:pModuleInfo.mod->ins];
-    NSNumber *moduleSamples = [NSNumber numberWithInt:pModuleInfo.mod->smp];
-    NSNumber *moduleInitSpeed = [NSNumber numberWithInt:pModuleInfo.mod->spd];
-    NSNumber *moduleInitBPM = [NSNumber numberWithInt:pModuleInfo.mod->bpm];
-    NSNumber *moduleLength = [NSNumber numberWithInt:pModuleInfo.mod->len];
-    NSNumber *moduleRestartPosition = [NSNumber numberWithInt:pModuleInfo.mod->rst];
-    NSNumber *moduleGlobalVolume = [NSNumber numberWithInt:pModuleInfo.mod->gvl];
     
     self->total_time = pModuleInfo.seq_data[0].duration;
     
-    tempModuleInfo = [NSMutableDictionary dictionaryWithObjectsAndKeys:
-                      moduleName, @"moduleName",
-                      moduleType, @"moduleType",
-                      moduleNumPatterns, @"moduleNumPatterns",
-                      moduleNumTracks, @"moduleNumTracks",
-                      moduleTracksPerPattern, @"moduleTracksPerPattern",
-                      moduleInstruments, @"moduleInstruments",
-                      moduleSamples, @"moduleSamples",
-                      moduleInitSpeed, @"moduleInitSpeed",
-                      moduleInitBPM, @"moduleInitBPM",
-                      moduleLength, @"moduleLength",
-                      moduleRestartPosition, @"moduleRestartPosition",
-                      moduleGlobalVolume,
-                      @"moduleGlobalVolume",
-                      nil];
-    _moduleInfo = [tempModuleInfo copy];
+    _moduleInfo = @{@"moduleName": [NSString stringWithUTF8String:pModuleInfo.mod->name],
+                    @"moduleType": [NSString stringWithUTF8String:pModuleInfo.mod->type],
+                    @"moduleNumPatterns": [NSNumber numberWithInt:pModuleInfo.mod->pat],
+                    @"moduleNumTracks": [NSNumber numberWithInt:pModuleInfo.mod->trk],
+                    @"moduleTracksPerPattern": [NSNumber numberWithInt:pModuleInfo.mod->chn],
+                    @"moduleInstruments": [NSNumber numberWithInt:pModuleInfo.mod->ins],
+                    @"moduleSamples": [NSNumber numberWithInt:pModuleInfo.mod->smp],
+                    @"moduleInitSpeed": [NSNumber numberWithInt:pModuleInfo.mod->spd],
+                    @"moduleInitBPM": [NSNumber numberWithInt:pModuleInfo.mod->bpm],
+                    @"moduleLength": [NSNumber numberWithInt:pModuleInfo.mod->len],
+                    @"moduleRestartPosition": [NSNumber numberWithInt:pModuleInfo.mod->rst],
+                    @"moduleGlobalVolume": [NSNumber numberWithInt:pModuleInfo.mod->gvl],
+                    @"moduleTotalTime": [NSNumber numberWithInt:pModuleInfo.seq_data[0].duration]};
+    
     return;
     
 }
