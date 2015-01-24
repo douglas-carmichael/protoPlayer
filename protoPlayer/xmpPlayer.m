@@ -202,7 +202,7 @@
     NSNumber *moduleRestartPosition = [NSNumber numberWithInt:pModuleInfo.mod->rst];
     NSNumber *moduleGlobalVolume = [NSNumber numberWithInt:pModuleInfo.mod->gvl];
     
-//    NSLog(@"total duration: %d", pModuleInfo.seq_data[0].duration);
+    self->total_time = pModuleInfo.seq_data[0].duration;
     
     tempModuleInfo = [NSMutableDictionary dictionaryWithObjectsAndKeys:
                       moduleName, @"moduleName",
@@ -222,6 +222,18 @@
     _moduleInfo = [tempModuleInfo copy];
     return;
     
+}
+
+-(void)nextPosition
+{
+    int status;
+    status = xmp_next_position(class_context);
+}
+
+-(void)prevPosition
+{
+    int status;
+    status = xmp_prev_position(class_context);
 }
 
 -(void)playModule:(NSError **)error
@@ -377,13 +389,6 @@
 -(BOOL)isPlaying
 {
     if(xmp_get_player(class_context, XMP_PLAYER_STATE) == XMP_STATE_PLAYING)
-    {
-        return YES;
-    }
-    Boolean isRunning;
-    int err;
-    err = AUGraphIsRunning(myGraph, &isRunning);
-    if (isRunning)
     {
         return YES;
     }

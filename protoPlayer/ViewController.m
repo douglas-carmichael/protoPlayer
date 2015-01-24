@@ -33,31 +33,41 @@
         }
         case 1:
         {
-            NSLog(@"Seek Backward.");
+            [ourPlayer prevPosition];
             break;
         }
         case 2:
         {
+            [sender setState:1];
             dispatch_async(dispatch_get_global_queue(QOS_CLASS_USER_INITIATED,0), ^{
                 [ourPlayer playModule:nil];
             });
-            usleep(100);
+            usleep(1000);
             dispatch_async(dispatch_get_global_queue(QOS_CLASS_BACKGROUND,0), ^{
+                [musicSlider setMaxValue:ourPlayer->total_time];
                 while([ourPlayer isPlaying])
                 {
                     usleep(10000);
                     NSString *ourTime = [ourPlayer getTimeString:ourPlayer->time];
                     [patternRow setStringValue:ourTime];
+                    [musicSlider setIntValue:ourPlayer->time];
                 }
+                [musicSlider setIntValue:0];
+                [patternRow setStringValue:@""];
             });
             break;
         }
         case 3:
         {
-            NSLog(@"Seek Forward.");
+            [ourPlayer stopPlayback];
             break;
         }
         case 4:
+        {
+            [ourPlayer nextPosition];
+            break;
+        }
+        case 5:
         {
             NSLog(@"Skip Forward.");
             break;
@@ -70,9 +80,9 @@
 -(IBAction)loadProto:(id)sender
 {
     NSError *ourError = nil;
-    NSString *ourModule = @"/Users/dcarmich/jakarta.mod";
+    NSString *ourModule = @"/Users/dcarmich/true.xm";
     [ourPlayer loadModule:[[NSURL alloc] initFileURLWithPath:ourModule] error:&ourError];
-    
+    [moduleName setStringValue:ourPlayer.moduleInfo[@"moduleName"]];
 }
 
 @end
