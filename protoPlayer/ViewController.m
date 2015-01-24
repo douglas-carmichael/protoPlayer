@@ -12,7 +12,8 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-
+    ourPlayer = [[xmpPlayer alloc] init];
+    
     // Do any additional setup after loading the view.
 }
 
@@ -22,4 +23,28 @@
     // Update the view, if already loaded.
 }
 
+-(IBAction)playbackControl:(id)sender
+{
+    switch ([sender tag]) {
+        case 0:
+            NSLog(@"Skip Backward.");
+            break;
+        case 1:
+            NSLog(@"Seek Backward.");
+            break;
+        case 2:
+            NSLog(@"Play/Pause.");
+            break;
+        case 3:
+            NSLog(@"Seek Forward.");
+            break;
+        case 4:
+            NSLog(@"Skip Forward.");
+            break;
+        default:
+            break;
+    }
+}
+
 @end
+

@@ -7,9 +7,13 @@
 //
 
 #import <Cocoa/Cocoa.h>
+#import "xmpPlayer.h"
+
+xmpPlayer *ourPlayer;
 
 @interface ViewController : NSViewController
 
+-(IBAction)playbackControl:(id)sender;
 
 @end
 

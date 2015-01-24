@@ -650,7 +650,7 @@
         <scene sceneID="R2V-B0-nI4">
             <objects>
                 <windowController id="B8D-0N-5wS" sceneMemberID="viewController">
-                    <window key="window" title="Window" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" hasShadow="NO" oneShot="NO" releasedWhenClosed="NO" showsToolbarButton="NO" visibleAtLaunch="NO" animationBehavior="default" id="IQv-IB-iLA">
+                    <window key="window" title="Player" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" oneShot="NO" releasedWhenClosed="NO" showsToolbarButton="NO" visibleAtLaunch="NO" animationBehavior="default" id="IQv-IB-iLA">
                         <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES"/>
                         <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
                         <rect key="contentRect" x="196" y="240" width="480" height="270"/>
@@ -669,77 +669,113 @@
             <objects>
                 <viewController id="XfG-lQ-9wD" customClass="ViewController" sceneMemberID="viewController">
                     <view key="view" id="m2S-Jp-Qdl">
-                        <rect key="frame" x="0.0" y="0.0" width="479" height="202"/>
+                        <rect key="frame" x="0.0" y="0.0" width="480" height="148"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <subviews>
-                            <progressIndicator fixedFrame="YES" maxValue="100" indeterminate="YES" style="bar" translatesAutoresizingMaskIntoConstraints="NO" id="uNz-Yc-kOv">
-                                <rect key="frame" x="32" y="77" width="416" height="20"/>
-                            </progressIndicator>
-                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="PsM-lr-8aQ" userLabel="patternRow">
-                                <rect key="frame" x="95" y="165" width="82" height="17"/>
+                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="PsM-lr-8aQ" userLabel="patternRow">
+                                <rect key="frame" x="95" y="111" width="82" height="17"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="78" id="y9O-V6-sh5"/>
+                                </constraints>
                                 <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="center" title="patternRow" id="z1x-vr-vMO" userLabel="patternCell">
                                     <font key="font" metaFont="system"/>
                                     <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                                     <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                 </textFieldCell>
                             </textField>
-                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="GUF-H9-4aT" userLabel="moduleName">
-                                <rect key="frame" x="252" y="165" width="131" height="17"/>
+                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="GUF-H9-4aT" userLabel="moduleName">
+                                <rect key="frame" x="252" y="111" width="90" height="17"/>
                                 <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="center" title="moduleName" id="pEa-yE-K9q">
                                     <font key="font" metaFont="system"/>
                                     <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                                     <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                 </textFieldCell>
                             </textField>
-                            <button verticalHuggingPriority="750" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="EhZ-Zi-StA" userLabel="playPause">
-                                <rect key="frame" x="211" y="6" width="42" height="36"/>
+                            <button verticalHuggingPriority="750" tag="2" translatesAutoresizingMaskIntoConstraints="NO" id="EhZ-Zi-StA" userLabel="playPause">
+                                <rect key="frame" x="219" y="4" width="42" height="36"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="42" id="HSR-dm-cwv"/>
+                                </constraints>
                                 <buttonCell key="cell" type="smallSquare" bezelStyle="smallSquare" image="media-playback-start" imagePosition="overlaps" alignment="center" alternateImage="media-playback-pause" state="on" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="ITt-yn-UsS">
                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                     <font key="font" metaFont="system"/>
                                 </buttonCell>
+                                <connections>
+                                    <action selector="playbackControl:" target="XfG-lQ-9wD" id="8yl-Qc-fYi"/>
+                                </connections>
                             </button>
-                            <button verticalHuggingPriority="750" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="mgl-NV-WRt" userLabel="seekForward">
-                                <rect key="frame" x="254" y="6" width="42" height="36"/>
+                            <button verticalHuggingPriority="750" tag="3" translatesAutoresizingMaskIntoConstraints="NO" id="mgl-NV-WRt" userLabel="seekForward">
+                                <rect key="frame" x="269" y="4" width="34" height="36"/>
                                 <buttonCell key="cell" type="smallSquare" bezelStyle="smallSquare" image="media-seek-forward" imagePosition="overlaps" alignment="center" state="on" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="rTt-nW-MTN">
                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                     <font key="font" metaFont="system"/>
                                 </buttonCell>
+                                <connections>
+                                    <action selector="playbackControl:" target="XfG-lQ-9wD" id="cRP-yH-l5O"/>
+                                </connections>
                             </button>
-                            <button verticalHuggingPriority="750" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="0Un-HV-2vz" userLabel="skipBack">
-                                <rect key="frame" x="125" y="6" width="42" height="36"/>
+                            <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="0Un-HV-2vz" userLabel="skipBack">
+                                <rect key="frame" x="135" y="4" width="34" height="36"/>
                                 <buttonCell key="cell" type="smallSquare" bezelStyle="smallSquare" image="media-skip-backward" imagePosition="overlaps" alignment="center" state="on" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="m7Z-G1-qWP">
                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                     <font key="font" metaFont="system"/>
                                 </buttonCell>
+                                <connections>
+                                    <action selector="playbackControl:" target="XfG-lQ-9wD" id="7dh-Vc-GQj"/>
+                                </connections>
                             </button>
-                            <button verticalHuggingPriority="750" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="BdE-PO-tp8" userLabel="seekBack">
-                                <rect key="frame" x="168" y="6" width="42" height="36"/>
+                            <slider verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="TnJ-vn-qk0">
+                                <rect key="frame" x="18" y="45" width="444" height="21"/>
+                                <sliderCell key="cell" state="on" alignment="left" maxValue="100" tickMarkPosition="above" sliderType="linear" id="O7f-Pr-S45"/>
+                            </slider>
+                            <button verticalHuggingPriority="750" tag="1" translatesAutoresizingMaskIntoConstraints="NO" id="BdE-PO-tp8" userLabel="seekBack">
+                                <rect key="frame" x="177" y="4" width="34" height="36"/>
                                 <buttonCell key="cell" type="smallSquare" bezelStyle="smallSquare" image="media-seek-backward" imagePosition="overlaps" alignment="center" state="on" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="OX0-4y-19t">
                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                     <font key="font" metaFont="system"/>
                                 </buttonCell>
+                                <connections>
+                                    <action selector="playbackControl:" target="XfG-lQ-9wD" id="Prf-o1-Lae"/>
+                                </connections>
                             </button>
-                            <button verticalHuggingPriority="750" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="p3k-L3-cwK" userLabel="skipForward">
-                                <rect key="frame" x="296" y="6" width="42" height="36"/>
+                            <button verticalHuggingPriority="750" tag="4" translatesAutoresizingMaskIntoConstraints="NO" id="p3k-L3-cwK" userLabel="skipForward">
+                                <rect key="frame" x="311" y="4" width="42" height="36"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="42" id="lBw-VD-Rtk"/>
+                                </constraints>
                                 <buttonCell key="cell" type="smallSquare" bezelStyle="smallSquare" image="media-skip-forward" imagePosition="overlaps" alignment="center" state="on" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="CEZ-hX-v1d">
                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                     <font key="font" metaFont="system"/>
                                 </buttonCell>
+                                <connections>
+                                    <action selector="playbackControl:" target="XfG-lQ-9wD" id="AKt-kg-NJi"/>
+                                </connections>
                             </button>
                         </subviews>
                         <constraints>
-                            <constraint firstAttribute="bottom" secondItem="0Un-HV-2vz" secondAttribute="bottom" constant="2" id="DKN-vR-gAh"/>
-                            <constraint firstAttribute="bottom" secondItem="p3k-L3-cwK" secondAttribute="bottom" constant="2" id="HGO-Os-2wb"/>
-                            <constraint firstAttribute="bottom" secondItem="EhZ-Zi-StA" secondAttribute="bottom" constant="2" id="J1m-0x-tmu"/>
-                            <constraint firstItem="PsM-lr-8aQ" firstAttribute="centerY" secondItem="GUF-H9-4aT" secondAttribute="centerY" id="OCq-7g-nBs"/>
-                            <constraint firstAttribute="bottom" secondItem="mgl-NV-WRt" secondAttribute="bottom" constant="2" id="Rdu-ec-79j"/>
-                            <constraint firstAttribute="bottom" secondItem="BdE-PO-tp8" secondAttribute="bottom" constant="2" id="UGB-Zq-iKd"/>
+                            <constraint firstItem="PsM-lr-8aQ" firstAttribute="top" secondItem="m2S-Jp-Qdl" secondAttribute="top" constant="20" symbolic="YES" id="2mC-Ee-jBd"/>
+                            <constraint firstItem="mgl-NV-WRt" firstAttribute="baseline" secondItem="p3k-L3-cwK" secondAttribute="baseline" id="AVn-Hs-WM7"/>
+                            <constraint firstItem="GUF-H9-4aT" firstAttribute="baseline" secondItem="PsM-lr-8aQ" secondAttribute="baseline" id="Ab5-oI-rQz"/>
+                            <constraint firstItem="PsM-lr-8aQ" firstAttribute="leading" secondItem="m2S-Jp-Qdl" secondAttribute="leading" constant="97" id="CTi-4Y-ehE"/>
+                            <constraint firstItem="EhZ-Zi-StA" firstAttribute="leading" secondItem="BdE-PO-tp8" secondAttribute="trailing" constant="8" symbolic="YES" id="I5w-PW-KHc"/>
+                            <constraint firstItem="EhZ-Zi-StA" firstAttribute="centerX" secondItem="TnJ-vn-qk0" secondAttribute="centerX" id="MPy-lf-Y4D"/>
+                            <constraint firstItem="mgl-NV-WRt" firstAttribute="baseline" secondItem="EhZ-Zi-StA" secondAttribute="baseline" id="WZX-5g-XwR"/>
+                            <constraint firstItem="mgl-NV-WRt" firstAttribute="leading" secondItem="EhZ-Zi-StA" secondAttribute="trailing" constant="8" symbolic="YES" id="Yk0-Mm-ACC"/>
+                            <constraint firstItem="p3k-L3-cwK" firstAttribute="leading" secondItem="mgl-NV-WRt" secondAttribute="trailing" constant="8" symbolic="YES" id="anb-jc-ARm"/>
+                            <constraint firstItem="BdE-PO-tp8" firstAttribute="leading" secondItem="0Un-HV-2vz" secondAttribute="trailing" constant="8" symbolic="YES" id="dwd-5h-U78"/>
+                            <constraint firstItem="TnJ-vn-qk0" firstAttribute="top" secondItem="PsM-lr-8aQ" secondAttribute="bottom" constant="47" id="fTi-hn-WZS"/>
+                            <constraint firstItem="EhZ-Zi-StA" firstAttribute="baseline" secondItem="BdE-PO-tp8" secondAttribute="baseline" id="jh3-as-xKq"/>
+                            <constraint firstItem="BdE-PO-tp8" firstAttribute="baseline" secondItem="0Un-HV-2vz" secondAttribute="baseline" id="olx-T4-Jvj"/>
+                            <constraint firstItem="GUF-H9-4aT" firstAttribute="leading" secondItem="PsM-lr-8aQ" secondAttribute="trailing" constant="79" id="owc-lT-vrK"/>
+                            <constraint firstItem="TnJ-vn-qk0" firstAttribute="leading" secondItem="m2S-Jp-Qdl" secondAttribute="leading" constant="20" symbolic="YES" id="uVj-eO-g67"/>
+                            <constraint firstItem="0Un-HV-2vz" firstAttribute="top" secondItem="TnJ-vn-qk0" secondAttribute="bottom" constant="8" symbolic="YES" id="v79-CP-ScZ"/>
+                            <constraint firstAttribute="trailing" secondItem="TnJ-vn-qk0" secondAttribute="trailing" constant="20" symbolic="YES" id="vae-sS-4as"/>
                         </constraints>
                     </view>
                 </viewController>
                 <customObject id="rPt-NT-nkU" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="74.5" y="621"/>
+            <point key="canvasLocation" x="74" y="594"/>
         </scene>
     </scenes>
     <resources>

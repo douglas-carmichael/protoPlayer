@@ -21,6 +21,9 @@
 		A31AD8681A71748900E48A59 /* media-seek-forward.png in Resources */ = {isa = PBXBuildFile; fileRef = A31AD8601A71748900E48A59 /* media-seek-forward.png */; };
 		A31AD8691A71748900E48A59 /* media-skip-backward.png in Resources */ = {isa = PBXBuildFile; fileRef = A31AD8611A71748900E48A59 /* media-skip-backward.png */; };
 		A31AD86A1A71748900E48A59 /* media-skip-forward.png in Resources */ = {isa = PBXBuildFile; fileRef = A31AD8621A71748900E48A59 /* media-skip-forward.png */; };
+		A3282F691A72AE9F005F33A7 /* xmpPlayer.m in Sources */ = {isa = PBXBuildFile; fileRef = A3282F631A72AE9F005F33A7 /* xmpPlayer.m */; };
+		A3282F6A1A72AE9F005F33A7 /* TPCircularBuffer.c in Sources */ = {isa = PBXBuildFile; fileRef = A3282F651A72AE9F005F33A7 /* TPCircularBuffer.c */; };
+		A3282F6B1A72AE9F005F33A7 /* libxmp.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A3282F681A72AE9F005F33A7 /* libxmp.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -54,6 +57,13 @@
 		A31AD8601A71748900E48A59 /* media-seek-forward.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "media-seek-forward.png"; sourceTree = "<group>"; };
 		A31AD8611A71748900E48A59 /* media-skip-backward.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "media-skip-backward.png"; sourceTree = "<group>"; };
 		A31AD8621A71748900E48A59 /* media-skip-forward.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "media-skip-forward.png"; sourceTree = "<group>"; };
+		A3282F621A72AE9F005F33A7 /* xmpPlayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = xmpPlayer.h; sourceTree = "<group>"; };
+		A3282F631A72AE9F005F33A7 /* xmpPlayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = xmpPlayer.m; sourceTree = "<group>"; };
+		A3282F641A72AE9F005F33A7 /* xmpPlayerErrors.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = xmpPlayerErrors.h; sourceTree = "<group>"; };
+		A3282F651A72AE9F005F33A7 /* TPCircularBuffer.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = TPCircularBuffer.c; sourceTree = "<group>"; };
+		A3282F661A72AE9F005F33A7 /* TPCircularBuffer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TPCircularBuffer.h; sourceTree = "<group>"; };
+		A3282F671A72AE9F005F33A7 /* xmp.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = xmp.h; sourceTree = "<group>"; };
+		A3282F681A72AE9F005F33A7 /* libxmp.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libxmp.a; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -61,6 +71,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A3282F6B1A72AE9F005F33A7 /* libxmp.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -109,6 +120,13 @@
 		A31AD8381A716DEC00E48A59 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				A3282F621A72AE9F005F33A7 /* xmpPlayer.h */,
+				A3282F631A72AE9F005F33A7 /* xmpPlayer.m */,
+				A3282F641A72AE9F005F33A7 /* xmpPlayerErrors.h */,
+				A3282F651A72AE9F005F33A7 /* TPCircularBuffer.c */,
+				A3282F661A72AE9F005F33A7 /* TPCircularBuffer.h */,
+				A3282F671A72AE9F005F33A7 /* xmp.h */,
+				A3282F681A72AE9F005F33A7 /* libxmp.a */,
 				A31AD86C1A71749900E48A59 /* Tango Media Icons */,
 				A31AD8391A716DEC00E48A59 /* Info.plist */,
 				A31AD83D1A716DEC00E48A59 /* main.m */,
@@ -256,8 +274,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A3282F691A72AE9F005F33A7 /* xmpPlayer.m in Sources */,
 				A31AD8411A716DEC00E48A59 /* ViewController.m in Sources */,
 				A31AD83E1A716DEC00E48A59 /* main.m in Sources */,
+				A3282F6A1A72AE9F005F33A7 /* TPCircularBuffer.c in Sources */,
 				A31AD83C1A716DEC00E48A59 /* AppDelegate.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -375,6 +395,10 @@
 				COMBINE_HIDPI_IMAGES = YES;
 				INFOPLIST_FILE = protoPlayer/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/protoPlayer",
+				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Debug;
@@ -386,6 +410,10 @@
 				COMBINE_HIDPI_IMAGES = YES;
 				INFOPLIST_FILE = protoPlayer/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/protoPlayer",
+				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Release;
@@ -445,6 +473,7 @@
 				A31AD8571A716DEC00E48A59 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		A31AD8581A716DEC00E48A59 /* Build configuration list for PBXNativeTarget "protoPlayerTests" */ = {
 			isa = XCConfigurationList;
@@ -453,6 +482,7 @@
 				A31AD85A1A716DEC00E48A59 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
