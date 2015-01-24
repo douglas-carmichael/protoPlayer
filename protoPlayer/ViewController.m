@@ -48,8 +48,7 @@
                 while([ourPlayer isPlaying])
                 {
                     usleep(10000);
-                    NSString *ourTime = [ourPlayer getTimeString:ourPlayer->time];
-                    [patternRow setStringValue:ourTime];
+                    [patternRow setStringValue:[ourPlayer getTimeString:ourPlayer->time]];
                     [musicSlider setIntValue:ourPlayer->time];
                 }
                 [musicSlider setIntValue:0];
