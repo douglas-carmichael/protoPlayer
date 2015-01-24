@@ -188,8 +188,6 @@
     struct xmp_module_info pModuleInfo;
     xmp_get_module_info(class_context, &pModuleInfo);
     
-    self->total_time = pModuleInfo.seq_data[0].duration;
-    
     _moduleInfo = @{@"moduleName": [NSString stringWithUTF8String:pModuleInfo.mod->name],
                     @"moduleType": [NSString stringWithUTF8String:pModuleInfo.mod->type],
                     @"moduleNumPatterns": [NSNumber numberWithInt:pModuleInfo.mod->pat],
@@ -286,7 +284,6 @@
             self->row = ourFrameInfo.row;
             self->bpm = ourFrameInfo.bpm;
             self->time = ourFrameInfo.time;
-            self->total_time = ourFrameInfo.total_time;
             
             // Declare some variables for us to use within the buffer loop
             void *bufferDest;
