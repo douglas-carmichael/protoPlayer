@@ -686,7 +686,7 @@
                                     <constraint firstAttribute="width" constant="42" id="HSR-dm-cwv"/>
                                 </constraints>
                                 <buttonCell key="cell" type="smallSquare" bezelStyle="smallSquare" image="media-playback-start" imagePosition="overlaps" alignment="center" alternateImage="media-playback-pause" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="ITt-yn-UsS">
-                                    <behavior key="behavior" pushIn="YES" changeContents="YES" lightByContents="YES"/>
+                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                     <font key="font" metaFont="system"/>
                                 </buttonCell>
                                 <connections>

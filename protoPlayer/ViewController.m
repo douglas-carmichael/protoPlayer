@@ -38,23 +38,33 @@
         }
         case 2:
         {
-            [sender setState:1];
-            dispatch_async(dispatch_get_global_queue(QOS_CLASS_USER_INITIATED,0), ^{
-                [ourPlayer playModule:nil];
-            });
-            usleep(1000);
-            dispatch_async(dispatch_get_global_queue(QOS_CLASS_BACKGROUND,0), ^{
-                [musicSlider setMaxValue:[[ourPlayer.moduleInfo objectForKey:@"moduleTotalTime"] intValue]];
-                while([ourPlayer isPlaying])
-                {
-                    usleep(10000);
-                    [patternRow setStringValue:[ourPlayer getTimeString:ourPlayer->time]];
-                    [musicSlider setIntValue:ourPlayer->time];
-                }
-                [musicSlider setIntValue:0];
-                [patternRow setStringValue:@""];
-            });
-            break;
+            if ([ourPlayer isLoaded])
+            {
+                dispatch_async(dispatch_get_global_queue(QOS_CLASS_USER_INITIATED,0), ^{
+                    [ourPlayer playModule:nil];
+                });
+                usleep(1000);
+                dispatch_async(dispatch_get_global_queue(QOS_CLASS_BACKGROUND,0), ^{
+                    [musicSlider setMaxValue:[[ourPlayer.moduleInfo objectForKey:@"moduleTotalTime"] intValue]];
+                    while([ourPlayer isPlaying])
+                    {
+                        usleep(10000);
+                        [patternRow setStringValue:[ourPlayer getTimeString:ourPlayer->time]];
+                        [musicSlider setIntValue:ourPlayer->time];
+                    }
+                    [musicSlider setIntValue:0];
+                    [patternRow setStringValue:@""];
+                });
+                break;
+            }
+            else
+            {
+                NSAlert *alert = [[NSAlert alloc] init];
+                [alert addButtonWithTitle:@"OK"];
+                [alert setMessageText:@"No module loaded."];
+                [alert setAlertStyle:NSWarningAlertStyle];
+                [alert beginSheetModalForWindow:[[self view] window] completionHandler:nil];
+            }
         }
         case 3:
         {
@@ -79,9 +89,27 @@
 -(IBAction)loadProto:(id)sender
 {
     NSError *ourError = nil;
-    NSString *ourModule = @"/Users/dcarmich/livedrea.mod";
-    [ourPlayer loadModule:[[NSURL alloc] initFileURLWithPath:ourModule] error:&ourError];
-    [moduleName setStringValue:ourPlayer.moduleInfo[@"moduleName"]];
+    NSOpenPanel *ourPanel = [NSOpenPanel openPanel];
+    
+    [ourPanel setCanChooseDirectories:NO];
+    [ourPanel setCanChooseFiles:YES];
+    [ourPanel setCanCreateDirectories:NO];
+    [ourPanel setAllowsMultipleSelection:NO];
+    if ([ourPanel runModal] == NSModalResponseOK)
+    {
+        [ourPlayer loadModule:[ourPanel URL] error:&ourError];
+        if(ourError)
+        {
+            NSAlert *alert = [[NSAlert alloc] init];
+            [alert addButtonWithTitle:@"OK"];
+            [alert setMessageText:@"Cannot load module."];
+            [alert setAlertStyle:NSWarningAlertStyle];
+            [alert beginSheetModalForWindow:[[self view] window] completionHandler:nil];
+            return;
+        }
+        [moduleName setStringValue:ourPlayer.moduleInfo[@"moduleName"]];
+    }
+    return;
 }
 
 @end
