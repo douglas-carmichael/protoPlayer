@@ -347,6 +347,12 @@
                           kAudioUnitScope_Output, 0, volume, 0);
 }
 
+-(void)setPosition:(int)positionValue
+{
+    int status;
+    status = xmp_set_position(class_context, positionValue);
+}
+
 -(NSString*)getTimeString:(int)timeValue
 {
     int minutes, seconds;

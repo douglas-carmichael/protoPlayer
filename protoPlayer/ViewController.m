@@ -28,7 +28,7 @@
     switch ([sender tag]) {
         case 0:
         {
-            NSLog(@"Skip Backward.");
+            [ourPlayer setPosition:0];
             break;
         }
         case 1:
@@ -68,7 +68,7 @@
         }
         case 5:
         {
-            NSLog(@"Skip Forward.");
+            [ourPlayer setPosition:[[ourPlayer.moduleInfo objectForKey:@"moduleTotalTime"] intValue]];
             break;
         }
         default:
@@ -79,7 +79,7 @@
 -(IBAction)loadProto:(id)sender
 {
     NSError *ourError = nil;
-    NSString *ourModule = @"/Users/dcarmich/true.xm";
+    NSString *ourModule = @"/Users/dcarmich/livedrea.mod";
     [ourPlayer loadModule:[[NSURL alloc] initFileURLWithPath:ourModule] error:&ourError];
     [moduleName setStringValue:ourPlayer.moduleInfo[@"moduleName"]];
 }

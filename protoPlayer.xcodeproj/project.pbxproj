@@ -24,6 +24,8 @@
 		A3282F691A72AE9F005F33A7 /* xmpPlayer.m in Sources */ = {isa = PBXBuildFile; fileRef = A3282F631A72AE9F005F33A7 /* xmpPlayer.m */; };
 		A3282F6A1A72AE9F005F33A7 /* TPCircularBuffer.c in Sources */ = {isa = PBXBuildFile; fileRef = A3282F651A72AE9F005F33A7 /* TPCircularBuffer.c */; };
 		A3282F6B1A72AE9F005F33A7 /* libxmp.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A3282F681A72AE9F005F33A7 /* libxmp.a */; };
+		A37412001A77243500EA9B76 /* folder-open.png in Resources */ = {isa = PBXBuildFile; fileRef = A37411FF1A77243500EA9B76 /* folder-open.png */; };
+		A37412021A77246300EA9B76 /* document-open.png in Resources */ = {isa = PBXBuildFile; fileRef = A37412011A77246300EA9B76 /* document-open.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -64,6 +66,8 @@
 		A3282F661A72AE9F005F33A7 /* TPCircularBuffer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TPCircularBuffer.h; sourceTree = "<group>"; };
 		A3282F671A72AE9F005F33A7 /* xmp.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = xmp.h; sourceTree = "<group>"; };
 		A3282F681A72AE9F005F33A7 /* libxmp.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libxmp.a; sourceTree = "<group>"; };
+		A37411FF1A77243500EA9B76 /* folder-open.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "folder-open.png"; sourceTree = "<group>"; };
+		A37412011A77246300EA9B76 /* document-open.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "document-open.png"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -162,6 +166,8 @@
 				A31AD8601A71748900E48A59 /* media-seek-forward.png */,
 				A31AD8611A71748900E48A59 /* media-skip-backward.png */,
 				A31AD8621A71748900E48A59 /* media-skip-forward.png */,
+				A37411FF1A77243500EA9B76 /* folder-open.png */,
+				A37412011A77246300EA9B76 /* document-open.png */,
 			);
 			name = "Tango Media Icons";
 			path = ..;
@@ -250,9 +256,11 @@
 			files = (
 				A31AD8681A71748900E48A59 /* media-seek-forward.png in Resources */,
 				A31AD8651A71748900E48A59 /* media-playback-start.png in Resources */,
+				A37412001A77243500EA9B76 /* folder-open.png in Resources */,
 				A31AD8691A71748900E48A59 /* media-skip-backward.png in Resources */,
 				A31AD8671A71748900E48A59 /* media-seek-backward.png in Resources */,
 				A31AD8661A71748900E48A59 /* media-playback-stop.png in Resources */,
+				A37412021A77246300EA9B76 /* document-open.png in Resources */,
 				A31AD8631A71748900E48A59 /* media-eject.png in Resources */,
 				A31AD8431A716DEC00E48A59 /* Images.xcassets in Resources */,
 				A31AD86A1A71748900E48A59 /* media-skip-forward.png in Resources */,
