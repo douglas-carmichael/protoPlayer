@@ -118,6 +118,7 @@
 
 -(void)setModPosition:(int)ourValue
 {
+    NSLog(@"setModPosition: %i", ourValue);
     [ourPlayer setPosition:ourValue];
 }
 
