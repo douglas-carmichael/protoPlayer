@@ -40,6 +40,7 @@
         {
             if ([ourPlayer isLoaded])
             {
+                [self setDragTimeline:YES];
                 dispatch_async(dispatch_get_global_queue(QOS_CLASS_USER_INITIATED,0), ^{
                     [ourPlayer playModule:nil];
                 });
@@ -49,8 +50,11 @@
                     while([ourPlayer isPlaying])
                     {
                         usleep(10000);
+                        if ([self dragTimeline])
+                        {
+                            [musicSlider setIntValue:ourPlayer->time];
+                        }
                         [patternRow setStringValue:[ourPlayer getTimeString:ourPlayer->time]];
-                        [musicSlider setIntValue:ourPlayer->time];
                     }
                     [musicSlider setIntValue:0];
                     [patternRow setStringValue:@""];
@@ -110,6 +114,11 @@
         [moduleName setStringValue:ourPlayer.moduleInfo[@"moduleName"]];
     }
     return;
+}
+
+-(void)setModPosition:(int)ourValue
+{
+    [ourPlayer setPosition:ourValue];
 }
 
 @end

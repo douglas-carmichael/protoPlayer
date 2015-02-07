@@ -21,6 +21,9 @@ xmpPlayer *ourPlayer;
 }
 -(IBAction)playbackControl:(id)sender;
 -(IBAction)loadProto:(id)sender;
+-(void)setModPosition:(int)ourValue;
+
+@property (assign) BOOL dragTimeline;
 
 @end
 
