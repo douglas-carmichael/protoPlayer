@@ -41,7 +41,7 @@
             if ([ourPlayer isLoaded])
             {
                 [self setDragTimeline:YES];
-                dispatch_async(dispatch_get_global_queue(QOS_CLASS_USER_INITIATED,0), ^{
+                dispatch_async(dispatch_get_global_queue(QOS_CLASS_BACKGROUND,0), ^{
                     [ourPlayer playModule:nil];
                 });
                 usleep(1000);
@@ -56,6 +56,7 @@
                         }
                         [patternRow setStringValue:[ourPlayer getTimeString:ourPlayer->time]];
                     }
+                    NSLog(@"Out of isPlaying loop!");
                     [musicSlider setIntValue:0];
                     [patternRow setStringValue:@""];
                 });
@@ -119,7 +120,7 @@
 -(void)setModPosition:(int)ourValue
 {
     NSLog(@"setModPosition: %i", ourValue);
-    [ourPlayer setPosition:ourValue];
+    [ourPlayer seekToTime:ourValue];
 }
 
 @end

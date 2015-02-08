@@ -308,6 +308,10 @@
             TPCircularBufferProduce(&ourClassPlayer.ourBuffer, ourFrameInfo.buffer_size);
         } while (xmp_play_frame(class_context) == 0);
     } while(!ourClassPlayer.reached_end);
+    
+    // Stop playback just to make sure isPlaying is set properly
+    NSLog(@"End of playback.");
+    xmp_stop_module(class_context);
 }
 
 -(void)pauseResume
@@ -353,6 +357,12 @@
     status = xmp_set_position(class_context, positionValue);
 }
 
+-(void)seekToTime:(int)seekValue
+{
+    int status;
+    status = xmp_seek_time(class_context, seekValue);
+}
+
 -(NSString*)getTimeString:(int)timeValue
 {
     int minutes, seconds;
@@ -377,7 +387,7 @@
 {
     if(xmp_get_player(class_context, XMP_PLAYER_STATE) == XMP_STATE_PLAYING)
     {
-        return YES;
+            return YES;
     }
     return NO;
 }

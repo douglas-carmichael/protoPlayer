@@ -55,6 +55,7 @@
 -(void)prevPosition;
 
 -(void)setPosition:(int)positionValue;
+-(void)seekToTime:(int)seekValue;
 -(void)setMasterVolume:(float)volume;
 -(void)setChannelVolume:(int)ourChannel volume:(int)ourVolume;
 -(NSString*)getTimeString:(int)timeValue;
