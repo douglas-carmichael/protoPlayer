@@ -56,7 +56,6 @@
                         }
                         [patternRow setStringValue:[ourPlayer getTimeString:ourPlayer->time]];
                     }
-                    NSLog(@"Out of isPlaying loop!");
                     [musicSlider setIntValue:0];
                     [patternRow setStringValue:@""];
                 });
