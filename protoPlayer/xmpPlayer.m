@@ -309,9 +309,6 @@
         } while (xmp_play_frame(class_context) == 0);
     } while(!ourClassPlayer.reached_end);
     
-    // Stop playback just to make sure isPlaying is set properly
-    NSLog(@"End of playback.");
-    xmp_stop_module(class_context);
 }
 
 -(void)pauseResume
