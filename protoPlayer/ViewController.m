@@ -111,6 +111,15 @@
             [alert beginSheetModalForWindow:[[self view] window] completionHandler:nil];
             return;
         }
+        
+        NSUserNotification *ourNotifier = [[NSUserNotification alloc] init];
+        [ourNotifier setTitle:@"protoPlayer"];
+        [ourNotifier setInformativeText:ourPlayer.moduleInfo[@"moduleName"]];
+        [ourNotifier setSoundName:NSUserNotificationDefaultSoundName];
+        
+        NSUserNotificationCenter *ourCenter = [NSUserNotificationCenter defaultUserNotificationCenter];
+        [ourCenter deliverNotification:ourNotifier];
+        
         [moduleName setStringValue:ourPlayer.moduleInfo[@"moduleName"]];
     }
     return;
@@ -118,7 +127,6 @@
 
 -(void)setModPosition:(int)ourValue
 {
-    NSLog(@"setModPosition: %i", ourValue);
     [ourPlayer seekToTime:ourValue];
 }
 

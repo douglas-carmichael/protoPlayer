@@ -309,6 +309,10 @@
         } while (xmp_play_frame(class_context) == 0);
     } while(!ourClassPlayer.reached_end);
     
+    if (ourClassPlayer.reached_end)
+    {
+        
+    }
 }
 
 -(void)pauseResume
