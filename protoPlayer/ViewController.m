@@ -133,9 +133,9 @@
     [ourPlayer seekPlayerToTime:ourValue];
 }
 
--(void)useLoadNotification:(NSString *)modName
+-(void)useLoadNotification:(NSNotification *)modName
 {
-    NSLog(@"NSNotification load received: %@", modName);
+    NSLog(@"NSNotification load received: %s", [[modName object] UTF8String]);
 }
 
 -(void)dealloc
