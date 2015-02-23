@@ -204,6 +204,12 @@
                     @"moduleGlobalVolume": [NSNumber numberWithInt:pModuleInfo.mod->gvl],
                     @"moduleTotalTime": [NSNumber numberWithInt:pModuleInfo.seq_data[0].duration]};
     
+    // Post our experimental notification
+    NSString *notificationName = @"DCProtoLoadNotification";
+    NSString *notificationKey = _moduleInfo[@"moduleName"];
+    [[NSNotificationCenter defaultCenter]
+     postNotificationName:notificationName object:notificationKey];
+    
     return;
     
 }
