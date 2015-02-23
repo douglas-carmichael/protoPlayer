@@ -135,7 +135,7 @@
 
 -(void)useLoadNotification:(NSString *)modName
 {
-    NSLog(@"NSNotification load received: %s", [modName UTF8String]);
+    NSLog(@"NSNotification load received: %@", modName);
 }
 
 -(void)dealloc
