@@ -215,31 +215,6 @@
 }
 
 
--(NSInteger)playerPosition;
-{
-    return (NSInteger)position;
-}
-
--(NSInteger)playerPattern;
-{
-    return (NSInteger)pattern;
-}
-
--(NSInteger)playerRow;
-{
-    return (NSInteger)row;
-}
-
--(NSInteger)playerBPM;
-{
-    return (NSInteger)bpm;
-}
-
--(NSInteger)playerTime;
-{
-    return (NSInteger)time;
-}
-
 -(void)nextPlayPosition
 {
     int status;
@@ -313,11 +288,11 @@
                 break;
             
             // Update our position information
-            self->position = ourFrameInfo.pos;
-            self->pattern = ourFrameInfo.pattern;
-            self->row = ourFrameInfo.row;
-            self->bpm = ourFrameInfo.bpm;
-            self->time = ourFrameInfo.time;
+            [self setValue:[NSNumber numberWithInt:ourFrameInfo.pos] forKey:@"playerPosition"];
+            [self setValue:[NSNumber numberWithInt:ourFrameInfo.pattern] forKey:@"playerPattern"];
+            [self setValue:[NSNumber numberWithInt:ourFrameInfo.row] forKey:@"playerRow"];
+            [self setValue:[NSNumber numberWithInt:ourFrameInfo.bpm] forKey:@"playerBPM"];
+            [self setValue:[NSNumber numberWithInt:ourFrameInfo.time] forKey:@"playerTime"];
             
             // Declare some variables for us to use within the buffer loop
             void *bufferDest;
@@ -382,7 +357,7 @@
                           kAudioUnitScope_Output, 0, volume, 0);
 }
 
--(void)setPlayerPosition:(NSInteger)positionValue
+-(void)jumpPosition:(NSInteger)positionValue
 {
     int status;
     status = xmp_set_position(class_context, (int)positionValue);
@@ -394,11 +369,12 @@
     status = xmp_seek_time(class_context, (int)seekValue);
 }
 
--(NSString*)getTimeString:(NSInteger)timeValue
+-(NSString*)getTimeString:(NSNumber*)timeValue
 {
     NSInteger minutes, seconds;
+    int workingTime = [timeValue intValue];
     
-    if (timeValue == 0)
+    if (workingTime == 0)
     {
         minutes = 0;
         seconds = 0;
@@ -407,8 +383,8 @@
     }
     else
     {
-        minutes = ((timeValue + 500) / 60000);
-        seconds = ((timeValue + 500) / 1000) % 60;
+        minutes = ((workingTime + 500) / 60000);
+        seconds = ((workingTime + 500) / 1000) % 60;
         
         // If we're on a 64-bit system, NSInteger is a long.
         // From: http://stackoverflow.com/questions/4445173/when-to-use-nsinteger-vs-int

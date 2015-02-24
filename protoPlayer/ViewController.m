@@ -31,7 +31,7 @@
     switch ([sender tag]) {
         case 0:
         {
-            [ourPlayer setPlayerPosition:0];
+            [ourPlayer jumpPosition:0];
             break;  
         }
         case 1:
@@ -55,7 +55,8 @@
                         usleep(10000);
                         if ([self dragTimeline])
                         {
-                            [musicSlider setIntValue:(int)[ourPlayer playerTime]];
+                            NSInteger sliderValue = [[ourPlayer playerTime] integerValue];
+                            [musicSlider setIntegerValue:sliderValue];
                         }
                         [patternRow setStringValue:[ourPlayer getTimeString:[ourPlayer playerTime]]];
                     }
@@ -85,7 +86,7 @@
         }
         case 5:
         {
-            [ourPlayer setPlayerPosition:[[ourPlayer.moduleInfo objectForKey:@"moduleTotalTime"] intValue]];
+            [ourPlayer jumpPosition:[[ourPlayer.moduleInfo objectForKey:@"moduleTotalTime"] intValue]];
             break;
         }
         default:

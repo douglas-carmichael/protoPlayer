@@ -46,11 +46,11 @@
 @property (readonly) NSArray *supportedFormats;
 @property (readonly) NSArray *instrumentNames;
 @property (readonly) NSDictionary *moduleInfo;
-@property (readonly) NSInteger playerPosition;
-@property (readonly) NSInteger playerPattern;
-@property (readonly) NSInteger playerRow;
-@property (readonly) NSInteger playerBPM;
-@property (readonly) NSInteger playerTime;
+@property (readonly) NSNumber* playerPosition;
+@property (readonly) NSNumber* playerPattern;
+@property (readonly) NSNumber* playerRow;
+@property (readonly) NSNumber* playerBPM;
+@property (readonly) NSNumber* playerTime;
 
 -(void)loadModule:(NSURL *)moduleURL error:(NSError *__autoreleasing *)error;
 -(void)playModule:(NSError **)error;
@@ -59,11 +59,11 @@
 -(void)nextPlayPosition;
 -(void)prevPlayPosition;
 
--(void)setPlayerPosition:(NSInteger)positionValue;
+-(void)jumpPosition:(NSInteger)positionValue;
 -(void)seekPlayerToTime:(NSInteger)seekValue;
 -(void)setMasterVolume:(float)volume;
 -(void)setChannelVolume:(NSInteger)ourChannel volume:(NSInteger)ourVolume;
--(NSString*)getTimeString:(NSInteger)timeValue;
+-(NSString*)getTimeString:(NSNumber*)timeValue;
 -(BOOL)isPlaying;
 -(BOOL)isLoaded;
 
