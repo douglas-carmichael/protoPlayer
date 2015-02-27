@@ -188,7 +188,7 @@
     if (xmp_get_player(class_context, XMP_STATE_PLAYING) != 0)
     {
         xmp_end_player(class_context);
-        _isPlaying = NO;
+        ourPlayback = NO;
     }
 
     // Load the module
@@ -318,8 +318,8 @@
             int bufferAvailable;
             
             // Tell everyone else we're not at the end
-            _isPlaying = YES;
             ourPlayback = YES;
+            
             // Let's start putting the data out into the buffer
             do {
                 bufferDest = TPCircularBufferHead(&ourClassPlayer.ourBuffer, &bufferAvailable);
@@ -340,9 +340,8 @@
         } while (xmp_play_frame(class_context) == 0);
     } while(!ourClassPlayer.reached_end);
     
-        // Tell everyone else we've reached the end
-        _isPlaying = NO;
-    ourPlayback = NO;
+            // Tell everyone else we've reached the end
+            ourPlayback = NO;
 }
 
 -(void)pauseResume
@@ -366,23 +365,20 @@
     }
 }
 
--(BOOL)betterPlayTest
+-(BOOL)isPlaying
 {
     int err;
     Boolean isRunning;
     
-    if ([self isPlaying])
+    if (ourPlayback)
     {
-        NSLog(@"ourPlayback: %i", ourPlayback);
         err = AUGraphIsRunning(myGraph, &isRunning);
         if (isRunning)
         {
             return YES;
         }
-        NSLog(@"ourPlayback: %i", ourPlayback);
         return NO;
     }
-    NSLog(@"ourPlayback: %i", ourPlayback);
     return NO;
 }
 

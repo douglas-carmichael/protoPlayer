@@ -48,7 +48,6 @@
 @property (readonly) NSNumber* playerRow;
 @property (readonly) NSNumber* playerBPM;
 @property (readonly) NSNumber* playerTime;
-@property (readonly) BOOL isPlaying;
 @property (readonly) BOOL isPaused;
 
 -(void)loadModule:(NSURL *)moduleURL error:(NSError *__autoreleasing *)error;
@@ -64,7 +63,7 @@
 -(void)setChannelVolume:(NSInteger)ourChannel volume:(NSInteger)ourVolume;
 -(NSString*)getTimeString:(NSNumber*)timeValue;
 -(BOOL)isLoaded;
--(BOOL)betterPlayTest;
+-(BOOL)isPlaying;
 
 OSStatus renderModuleCallback(void *inRefCon, AudioUnitRenderActionFlags *ioActionFlags,
                               const AudioTimeStamp *inTimeStamp,

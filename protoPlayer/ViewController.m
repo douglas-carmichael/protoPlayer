@@ -50,7 +50,7 @@
                 usleep(1000);
                 dispatch_async(dispatch_get_global_queue(QOS_CLASS_BACKGROUND,0), ^{
                     [musicSlider setMaxValue:[[ourPlayer.moduleInfo objectForKey:@"moduleTotalTime"] intValue]];
-                    while([ourPlayer betterPlayTest] == YES)
+                    while([ourPlayer isPlaying])
                     {
                         usleep(10000);
                         if ([self dragTimeline])
