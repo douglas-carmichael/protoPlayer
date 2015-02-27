@@ -172,6 +172,25 @@
 -(void)loadModule:(NSURL *)moduleURL error:(NSError *__autoreleasing *)error
 {
     
+    // Test if this file is a valid module.
+    int testValue;
+    testValue = xmp_test_module((char *)[moduleURL.path UTF8String], NULL);
+    if (testValue != 0)
+    {
+        NSString *errorDescription = NSLocalizedString(@"Cannot load module.", @"");
+        NSDictionary *errorInfo = @{NSLocalizedDescriptionKey: errorDescription};
+        NSString *xmpErrorDomain = @"net.dcarmichael.xmpPlayer";
+        *error = [NSError errorWithDomain:xmpErrorDomain code:xmpLoadingError userInfo:errorInfo];
+        return;
+    }
+    
+    // If we're playing, stop playback.
+    if (xmp_get_player(class_context, XMP_STATE_PLAYING) != 0)
+    {
+        xmp_end_player(class_context);
+        _isPlaying = NO;
+    }
+
     // Load the module
     if (xmp_load_module(class_context, (char *)[moduleURL.path UTF8String]) != 0)
     {
@@ -298,6 +317,9 @@
             void *bufferDest;
             int bufferAvailable;
             
+            // Tell everyone else we're not at the end
+            _isPlaying = YES;
+            ourPlayback = YES;
             // Let's start putting the data out into the buffer
             do {
                 bufferDest = TPCircularBufferHead(&ourClassPlayer.ourBuffer, &bufferAvailable);
@@ -318,6 +340,9 @@
         } while (xmp_play_frame(class_context) == 0);
     } while(!ourClassPlayer.reached_end);
     
+        // Tell everyone else we've reached the end
+        _isPlaying = NO;
+    ourPlayback = NO;
 }
 
 -(void)pauseResume
@@ -329,14 +354,36 @@
     err = AUGraphIsRunning(myGraph, &isRunning);
     if (isRunning)
     {
+        _isPaused = YES;
         AUGraphStop(myGraph);
         ourClassPlayer.paused_flag = true;
     }
     else
     {
+        _isPaused = NO;
         AUGraphStart(myGraph);
         ourClassPlayer.paused_flag = false;
     }
+}
+
+-(BOOL)betterPlayTest
+{
+    int err;
+    Boolean isRunning;
+    
+    if ([self isPlaying])
+    {
+        NSLog(@"ourPlayback: %i", ourPlayback);
+        err = AUGraphIsRunning(myGraph, &isRunning);
+        if (isRunning)
+        {
+            return YES;
+        }
+        NSLog(@"ourPlayback: %i", ourPlayback);
+        return NO;
+    }
+    NSLog(@"ourPlayback: %i", ourPlayback);
+    return NO;
 }
 
 -(void)stopPlayer
@@ -398,16 +445,6 @@
     }
 }
 
--(BOOL)isPlaying
-{
-    
-    // FIXME: Does not accurately detect playback state.
-    if(xmp_get_player(class_context, XMP_PLAYER_STATE) == XMP_STATE_PLAYING)
-    {
-        return YES;
-    }
-    return NO;
-}
 
 -(BOOL)isLoaded
 {

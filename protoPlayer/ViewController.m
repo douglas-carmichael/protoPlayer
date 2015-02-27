@@ -50,15 +50,15 @@
                 usleep(1000);
                 dispatch_async(dispatch_get_global_queue(QOS_CLASS_BACKGROUND,0), ^{
                     [musicSlider setMaxValue:[[ourPlayer.moduleInfo objectForKey:@"moduleTotalTime"] intValue]];
-                    while([ourPlayer isPlaying])
+                    while([ourPlayer betterPlayTest] == YES)
                     {
                         usleep(10000);
                         if ([self dragTimeline])
                         {
                             NSInteger sliderValue = [[ourPlayer playerTime] integerValue];
                             [musicSlider setIntegerValue:sliderValue];
+                            [patternRow setStringValue:[ourPlayer getTimeString:[ourPlayer playerTime]]];
                         }
-                        [patternRow setStringValue:[ourPlayer getTimeString:[ourPlayer playerTime]]];
                     }
                     [musicSlider setIntValue:0];
                     [patternRow setStringValue:@""];
@@ -128,6 +128,7 @@
     }
     return;
 }
+
 
 -(void)setModPosition:(int)ourValue
 {

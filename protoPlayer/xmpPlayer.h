@@ -36,10 +36,7 @@
     // Set up our ASBD for the audio input from libxmp (referenced in playModule)
     AudioStreamBasicDescription streamFormat;
     
-    // Set up some integers for position/pattern/row/bpm
-    // NOTE: These will be exposed publicly by the 'playerXXX' read-only properties
-    int position, pattern, row, bpm, time;
-
+    BOOL ourPlayback;
 }
 
 @property (readonly) NSString *xmpVersion;
@@ -51,6 +48,8 @@
 @property (readonly) NSNumber* playerRow;
 @property (readonly) NSNumber* playerBPM;
 @property (readonly) NSNumber* playerTime;
+@property (readonly) BOOL isPlaying;
+@property (readonly) BOOL isPaused;
 
 -(void)loadModule:(NSURL *)moduleURL error:(NSError *__autoreleasing *)error;
 -(void)playModule:(NSError **)error;
@@ -64,8 +63,8 @@
 -(void)setMasterVolume:(float)volume;
 -(void)setChannelVolume:(NSInteger)ourChannel volume:(NSInteger)ourVolume;
 -(NSString*)getTimeString:(NSNumber*)timeValue;
--(BOOL)isPlaying;
 -(BOOL)isLoaded;
+-(BOOL)betterPlayTest;
 
 OSStatus renderModuleCallback(void *inRefCon, AudioUnitRenderActionFlags *ioActionFlags,
                               const AudioTimeStamp *inTimeStamp,
