@@ -244,6 +244,7 @@
                     </connections>
                 </viewController>
                 <customObject id="rPt-NT-nkU" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
+                <objectController id="cd8-46-AwC"/>
                 <userDefaultsController representsSharedInstance="YES" id="6k3-zY-iA1"/>
             </objects>
             <point key="canvasLocation" x="101" y="594"/>
