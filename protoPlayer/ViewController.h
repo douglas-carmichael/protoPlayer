@@ -25,6 +25,7 @@ xmpPlayer *ourPlayer;
 -(void)useLoadNotification:(NSNotification *)modName;
 
 @property (assign) BOOL dragTimeline;
+@property NSString* modTime;
 
 @end
 

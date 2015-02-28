@@ -196,6 +196,21 @@
                                     <outlet property="delegate" destination="XfG-lQ-9wD" id="qpu-Le-gPQ"/>
                                 </connections>
                             </slider>
+                            <textField verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="muU-Q1-Uqa">
+                                <rect key="frame" x="245" y="63" width="96" height="22"/>
+                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" drawsBackground="YES" id="KDF-Cx-Jhe">
+                                    <font key="font" metaFont="system"/>
+                                    <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
+                                <connections>
+                                    <binding destination="XfG-lQ-9wD" name="value" keyPath="self.modTime" id="sag-wb-5gm">
+                                        <dictionary key="options">
+                                            <bool key="NSContinuouslyUpdatesValue" value="YES"/>
+                                        </dictionary>
+                                    </binding>
+                                </connections>
+                            </textField>
                         </subviews>
                         <constraints>
                             <constraint firstItem="GUF-H9-4aT" firstAttribute="leading" secondItem="m2S-Jp-Qdl" secondAttribute="leading" constant="29" id="75w-wr-wMw"/>
@@ -229,6 +244,7 @@
                     </connections>
                 </viewController>
                 <customObject id="rPt-NT-nkU" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
+                <userDefaultsController representsSharedInstance="YES" id="6k3-zY-iA1"/>
             </objects>
             <point key="canvasLocation" x="101" y="594"/>
         </scene>

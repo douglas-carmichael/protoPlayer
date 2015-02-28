@@ -10,6 +10,8 @@
 
 @implementation ViewController
 
+@synthesize modTime;
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     ourPlayer = [[xmpPlayer alloc] init];
@@ -58,6 +60,7 @@
                             NSInteger sliderValue = [[ourPlayer playerTime] integerValue];
                             [musicSlider setIntegerValue:sliderValue];
                             [patternRow setStringValue:[ourPlayer getTimeString:[ourPlayer playerTime]]];
+                            modTime = @"Blah";
                         }
                     }
                     [musicSlider setIntValue:0];
