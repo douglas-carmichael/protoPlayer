@@ -135,11 +135,6 @@
     [ourPlayer seekPlayerToTime:ourValue];
 }
 
--(void)useLoadNotification:(NSNotification *)modName
-{
-    NSLog(@"NSNotification load received: %s", [[modName object] UTF8String]);
-}
-
 -(void)dealloc
 {
     [[NSNotificationCenter defaultCenter] removeObserver:self];
