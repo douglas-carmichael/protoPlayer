@@ -15,9 +15,6 @@
     ourPlayer = [[xmpPlayer alloc] init];
     
     // Do any additional setup after loading the view.
-    // Set up our experimental module loading notification
-    NSString *loadNotificationName = @"DCProtoLoadNotification";
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(useLoadNotification:) name:loadNotificationName object:nil];
 }
 
 - (void)setRepresentedObject:(id)representedObject {
