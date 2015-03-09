@@ -27,6 +27,7 @@
 		A3680A971A848E1400467A65 /* TimeScrubberSlider.m in Sources */ = {isa = PBXBuildFile; fileRef = A3680A961A848E1400467A65 /* TimeScrubberSlider.m */; };
 		A37412001A77243500EA9B76 /* folder-open.png in Resources */ = {isa = PBXBuildFile; fileRef = A37411FF1A77243500EA9B76 /* folder-open.png */; };
 		A37412021A77246300EA9B76 /* document-open.png in Resources */ = {isa = PBXBuildFile; fileRef = A37412011A77246300EA9B76 /* document-open.png */; };
+		A376FA931AAD631E007CE9DA /* Module.m in Sources */ = {isa = PBXBuildFile; fileRef = A376FA921AAD631E007CE9DA /* Module.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -71,6 +72,8 @@
 		A3680A961A848E1400467A65 /* TimeScrubberSlider.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TimeScrubberSlider.m; sourceTree = "<group>"; };
 		A37411FF1A77243500EA9B76 /* folder-open.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "folder-open.png"; sourceTree = "<group>"; };
 		A37412011A77246300EA9B76 /* document-open.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "document-open.png"; sourceTree = "<group>"; };
+		A376FA911AAD631E007CE9DA /* Module.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Module.h; sourceTree = "<group>"; };
+		A376FA921AAD631E007CE9DA /* Module.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Module.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -134,6 +137,7 @@
 				A3282F641A72AE9F005F33A7 /* xmpPlayerErrors.h */,
 				A3282F651A72AE9F005F33A7 /* TPCircularBuffer.c */,
 				A3282F661A72AE9F005F33A7 /* TPCircularBuffer.h */,
+				A376FA941AAD6323007CE9DA /* Module class */,
 				A3282F671A72AE9F005F33A7 /* xmp.h */,
 				A3282F681A72AE9F005F33A7 /* libxmp.a */,
 				A31AD86C1A71749900E48A59 /* Tango Media Icons */,
@@ -176,6 +180,15 @@
 			);
 			name = "Tango Media Icons";
 			path = ..;
+			sourceTree = "<group>";
+		};
+		A376FA941AAD6323007CE9DA /* Module class */ = {
+			isa = PBXGroup;
+			children = (
+				A376FA911AAD631E007CE9DA /* Module.h */,
+				A376FA921AAD631E007CE9DA /* Module.m */,
+			);
+			name = "Module class";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -291,6 +304,7 @@
 				A3282F691A72AE9F005F33A7 /* xmpPlayer.m in Sources */,
 				A31AD8411A716DEC00E48A59 /* ViewController.m in Sources */,
 				A31AD83E1A716DEC00E48A59 /* main.m in Sources */,
+				A376FA931AAD631E007CE9DA /* Module.m in Sources */,
 				A3282F6A1A72AE9F005F33A7 /* TPCircularBuffer.c in Sources */,
 				A31AD83C1A716DEC00E48A59 /* AppDelegate.m in Sources */,
 				A3680A971A848E1400467A65 /* TimeScrubberSlider.m in Sources */,

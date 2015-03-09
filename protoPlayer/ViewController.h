@@ -10,6 +10,7 @@
 #import "xmpPlayer.h"
 
 xmpPlayer *ourPlayer;
+Module *ourModule;
 
 @interface ViewController : NSViewController
 

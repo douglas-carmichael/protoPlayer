@@ -46,15 +46,17 @@
                 });
                 usleep(1000);
                 dispatch_async(dispatch_get_global_queue(QOS_CLASS_BACKGROUND,0), ^{
-                    [musicSlider setMaxValue:[[ourPlayer.moduleInfo objectForKey:@"moduleTotalTime"] intValue]];
+                    [musicSlider setMaxValue:[ourModule modTotalTime]];
+                    NSLog(@"totalTime: %d", [ourModule modTotalTime]);
                     while([ourPlayer isPlaying])
                     {
                         usleep(10000);
                         if ([self dragTimeline])
                         {
-                            NSInteger sliderValue = [[ourPlayer playerTime] integerValue];
+                            NSInteger sliderValue = [ourPlayer playerTime];
                             [musicSlider setIntegerValue:sliderValue];
-                            [patternRow setStringValue:[ourPlayer getTimeString:[ourPlayer playerTime]]];
+                            [patternRow setStringValue:
+                             [ourPlayer getTimeString:[ourPlayer playerTime]]];
                         }
                     }
                     [musicSlider setIntValue:0];
@@ -83,7 +85,7 @@
         }
         case 5:
         {
-            [ourPlayer jumpPosition:[[ourPlayer.moduleInfo objectForKey:@"moduleTotalTime"] intValue]];
+            [ourPlayer jumpPosition:[ourModule modTotalTime]];
             break;
         }
         default:
@@ -95,6 +97,7 @@
 {
     NSError *ourError = nil;
     NSOpenPanel *ourPanel = [NSOpenPanel openPanel];
+    Module *ourModule = [[Module alloc] init];
     
     [ourPanel setCanChooseDirectories:NO];
     [ourPanel setCanChooseFiles:YES];
@@ -102,7 +105,8 @@
     [ourPanel setAllowsMultipleSelection:NO];
     if ([ourPanel runModal] == NSModalResponseOK)
     {
-        [ourPlayer loadModule:[ourPanel URL] error:&ourError];
+        [ourModule setFilePath:[ourPanel URL]];
+        [ourPlayer loadModule:ourModule error:&ourError];
         if(ourError)
         {
             NSAlert *alert = [[NSAlert alloc] init];
@@ -115,13 +119,13 @@
         
         NSUserNotification *ourNotifier = [[NSUserNotification alloc] init];
         [ourNotifier setTitle:@"protoPlayer"];
-        [ourNotifier setInformativeText:ourPlayer.moduleInfo[@"moduleName"]];
+        [ourNotifier setInformativeText:[ourModule moduleName]];
         [ourNotifier setSoundName:NSUserNotificationDefaultSoundName];
         
         NSUserNotificationCenter *ourCenter = [NSUserNotificationCenter defaultUserNotificationCenter];
         [ourCenter deliverNotification:ourNotifier];
         
-        [moduleName setStringValue:ourPlayer.moduleInfo[@"moduleName"]];
+        [moduleName setStringValue:[ourModule moduleName]];
     }
     return;
 }

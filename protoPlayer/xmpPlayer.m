@@ -30,7 +30,7 @@
             formatArrayIndex++;
         }
         _supportedFormats = [tempSupportedFormats copy];
-               
+        
         // Set up our audio
         status = NewAUGraph(&myGraph);
         if (status != noErr)
@@ -172,12 +172,12 @@
     DisposeAUGraph(myGraph);
 }
 
--(void)loadModule:(NSURL *)moduleURL error:(NSError *__autoreleasing *)error
+-(void)loadModule:(Module *)ourModule error:(NSError *__autoreleasing *)error
 {
     
     // Test if this file is a valid module.
     int testValue;
-    testValue = xmp_test_module((char *)[moduleURL.path UTF8String], NULL);
+    testValue = xmp_test_module((char *)[[ourModule filePath].path UTF8String], NULL);
     if (testValue != 0)
     {
         NSString *errorDescription = NSLocalizedString(@"Cannot load module.", @"");
@@ -193,9 +193,9 @@
         xmp_end_player(class_context);
         ourPlayback = NO;
     }
-
+    
     // Load the module
-    if (xmp_load_module(class_context, (char *)[moduleURL.path UTF8String]) != 0)
+    if (xmp_load_module(class_context, (char *)[[ourModule filePath].path UTF8String]) != 0)
     {
         if (error != NULL)
         {
@@ -212,19 +212,20 @@
     struct xmp_module_info pModuleInfo;
     xmp_get_module_info(class_context, &pModuleInfo);
     
-    _moduleInfo = @{@"moduleName": [NSString stringWithUTF8String:pModuleInfo.mod->name],
-                    @"moduleType": [NSString stringWithUTF8String:pModuleInfo.mod->type],
-                    @"moduleNumPatterns": [NSNumber numberWithInt:pModuleInfo.mod->pat],
-                    @"moduleNumTracks": [NSNumber numberWithInt:pModuleInfo.mod->trk],
-                    @"moduleTracksPerPattern": [NSNumber numberWithInt:pModuleInfo.mod->chn],
-                    @"moduleInstruments": [NSNumber numberWithInt:pModuleInfo.mod->ins],
-                    @"moduleSamples": [NSNumber numberWithInt:pModuleInfo.mod->smp],
-                    @"moduleInitSpeed": [NSNumber numberWithInt:pModuleInfo.mod->spd],
-                    @"moduleInitBPM": [NSNumber numberWithInt:pModuleInfo.mod->bpm],
-                    @"moduleLength": [NSNumber numberWithInt:pModuleInfo.mod->len],
-                    @"moduleRestartPosition": [NSNumber numberWithInt:pModuleInfo.mod->rst],
-                    @"moduleGlobalVolume": [NSNumber numberWithInt:pModuleInfo.mod->gvl],
-                    @"moduleTotalTime": [NSNumber numberWithInt:pModuleInfo.seq_data[0].duration]};
+    ourModule.moduleName = [NSString stringWithUTF8String:pModuleInfo.mod->name];
+    ourModule.moduleType = [NSString stringWithUTF8String:pModuleInfo.mod->type];
+    ourModule.numPatterns = pModuleInfo.mod->pat;
+    ourModule.numTracks = pModuleInfo.mod->trk;
+    ourModule.numChannels = pModuleInfo.mod->chn;
+    ourModule.numInstruments = pModuleInfo.mod->ins;
+    ourModule.numSamples = pModuleInfo.mod->smp;
+    ourModule.initSpeed = pModuleInfo.mod->spd;
+    ourModule.initBPM = pModuleInfo.mod->bpm;
+    ourModule.modLength = pModuleInfo.mod->len;
+    ourModule.modRestartPos = pModuleInfo.mod->rst;
+    ourModule.modGlobalVolume = pModuleInfo.mod->gvl;
+    ourModule.modTotalTime = pModuleInfo.seq_data[0].duration;
+    
     return;
     
 }
@@ -303,11 +304,11 @@
                 break;
             
             // Update our position information
-            [self setValue:[NSNumber numberWithInt:ourFrameInfo.pos] forKey:@"playerPosition"];
-            [self setValue:[NSNumber numberWithInt:ourFrameInfo.pattern] forKey:@"playerPattern"];
-            [self setValue:[NSNumber numberWithInt:ourFrameInfo.row] forKey:@"playerRow"];
-            [self setValue:[NSNumber numberWithInt:ourFrameInfo.bpm] forKey:@"playerBPM"];
-            [self setValue:[NSNumber numberWithInt:ourFrameInfo.time] forKey:@"playerTime"];
+            _playerPosition = ourFrameInfo.pos;
+            _playerPattern = ourFrameInfo.pattern;
+            _playerRow = ourFrameInfo.row;
+            _playerBPM = ourFrameInfo.bpm;
+            _playerTime = ourFrameInfo.time;
             
             // Declare some variables for us to use within the buffer loop
             void *bufferDest;
@@ -336,8 +337,8 @@
         } while (xmp_play_frame(class_context) == 0);
     } while(!ourClassPlayer.reached_end);
     
-            // Tell everyone else we've reached the end
-            ourPlayback = NO;
+    // Tell everyone else we've reached the end
+    ourPlayback = NO;
 }
 
 -(void)pauseResume
@@ -404,12 +405,11 @@
     status = xmp_seek_time(class_context, (int)seekValue);
 }
 
--(NSString*)getTimeString:(NSNumber*)timeValue
+-(NSString*)getTimeString:(int)timeValue
 {
     NSInteger minutes, seconds;
-    int workingTime = [timeValue intValue];
     
-    if (workingTime == 0)
+    if (timeValue == 0)
     {
         minutes = 0;
         seconds = 0;
@@ -418,17 +418,17 @@
     }
     else
     {
-        minutes = ((workingTime + 500) / 60000);
-        seconds = ((workingTime + 500) / 1000) % 60;
+        minutes = ((timeValue + 500) / 60000);
+        seconds = ((timeValue + 500) / 1000) % 60;
         
         // If we're on a 64-bit system, NSInteger is a long.
         // From: http://stackoverflow.com/questions/4445173/when-to-use-nsinteger-vs-int
         
-        #if __LP64__ || TARGET_OS_EMBEDDED || TARGET_OS_IPHONE || TARGET_OS_WIN32 || NS_BUILD_32_LIKE_64
+#if __LP64__ || TARGET_OS_EMBEDDED || TARGET_OS_IPHONE || TARGET_OS_WIN32 || NS_BUILD_32_LIKE_64
         NSString *timeReturn = [[NSString alloc] initWithFormat:@"%02ld:%02ld", (long)minutes, (long)seconds];
-        #else
+#else
         NSString *timeReturn = [[NSString alloc] initWithFormat:@"%02d:%02d", minutes, seconds];
-        #endif
+#endif
         return timeReturn;
     }
 }
