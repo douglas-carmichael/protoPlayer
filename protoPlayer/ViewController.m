@@ -13,7 +13,8 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     ourPlayer = [[xmpPlayer alloc] init];
-    
+    ourModule = [[Module alloc] init];
+
     // Do any additional setup after loading the view.
 }
 
@@ -25,11 +26,6 @@
 
 -(IBAction)playbackControl:(id)sender
 {
-    __block Module *playModule;
-    playModule = [ourModule copy];
-    
-    NSLog(@"totalTime before block: %i", [ourModule modTotalTime]);
-    NSLog(@"name: %@", [ourModule moduleName]);
     
     switch ([sender tag]) {
         case 0:
@@ -52,8 +48,8 @@
                 });
                 usleep(1000);
                 dispatch_async(dispatch_get_global_queue(QOS_CLASS_BACKGROUND,0), ^{
-                    [musicSlider setMaxValue:[playModule modTotalTime]];
-                    NSLog(@"totalTime: %d", [playModule modTotalTime]);
+                    [musicSlider setMaxValue:[ourModule modTotalTime]];
+                    NSLog(@"totalTime: %d", [ourModule modTotalTime]);
                     while([ourPlayer isPlaying])
                     {
                         usleep(10000);
@@ -103,7 +99,6 @@
 {
     NSError *ourError = nil;
     NSOpenPanel *ourPanel = [NSOpenPanel openPanel];
-    Module *ourModule = [[Module alloc] init];
     
     [ourPanel setCanChooseDirectories:NO];
     [ourPanel setCanChooseFiles:YES];
@@ -123,13 +118,6 @@
             return;
         }
         
-        NSUserNotification *ourNotifier = [[NSUserNotification alloc] init];
-        [ourNotifier setTitle:@"protoPlayer"];
-        [ourNotifier setInformativeText:[ourModule moduleName]];
-        [ourNotifier setSoundName:NSUserNotificationDefaultSoundName];
-        
-        NSUserNotificationCenter *ourCenter = [NSUserNotificationCenter defaultUserNotificationCenter];
-        [ourCenter deliverNotification:ourNotifier];
         
         [moduleName setStringValue:[ourModule moduleName]];
         
