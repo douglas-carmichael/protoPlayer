@@ -23,6 +23,7 @@ Module *ourModule;
 -(IBAction)playbackControl:(id)sender;
 -(IBAction)loadProto:(id)sender;
 -(void)setModPosition:(int)ourValue;
+-(void)showPosition;
 
 @property (assign) BOOL dragTimeline;
 

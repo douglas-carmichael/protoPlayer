@@ -16,6 +16,8 @@
     ourModule = [[Module alloc] init];
 
     // Do any additional setup after loading the view.
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(showPosition) name:@"dcXmpPlayer" object:nil];
+    
 }
 
 - (void)setRepresentedObject:(id)representedObject {
@@ -57,8 +59,6 @@
                         {
                             NSInteger sliderValue = [ourPlayer playerTime];
                             [musicSlider setIntegerValue:sliderValue];
-                            [patternRow setStringValue:
-                             [ourPlayer getTimeString:[ourPlayer playerTime]]];
                         }
                     }
                     [musicSlider setIntValue:0];
@@ -129,6 +129,12 @@
 -(void)setModPosition:(int)ourValue
 {
     [ourPlayer seekPlayerToTime:ourValue];
+}
+
+-(void)showPosition
+{
+    [patternRow setStringValue:
+     [ourPlayer getTimeString:[ourPlayer playerTime]]];
 }
 
 -(void)dealloc

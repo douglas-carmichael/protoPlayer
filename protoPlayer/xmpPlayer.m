@@ -310,6 +310,11 @@
             _playerBPM = ourFrameInfo.bpm;
             _playerTime = ourFrameInfo.time;
             
+            
+            // Post our notification
+            NSString *notificationName = @"dcXmpPlayer";
+            [[NSNotificationCenter defaultCenter] postNotificationName:notificationName object:nil];
+            
             // Declare some variables for us to use within the buffer loop
             void *bufferDest;
             int bufferAvailable;
