@@ -48,8 +48,7 @@
                 dispatch_async(dispatch_get_global_queue(QOS_CLASS_BACKGROUND,0), ^{
                     [ourPlayer playModule:nil];
                 });
-                usleep(1000);
-                dispatch_async(dispatch_get_global_queue(QOS_CLASS_BACKGROUND,0), ^{
+                dispatch_after(dispatch_time(DISPATCH_TIME_NOW, 0.5 * NSEC_PER_SEC),dispatch_get_global_queue(QOS_CLASS_BACKGROUND,0), ^{
                     [musicSlider setMaxValue:[ourModule modTotalTime]];
                     NSLog(@"totalTime: %d", [ourModule modTotalTime]);
                     while([ourPlayer isPlaying])
