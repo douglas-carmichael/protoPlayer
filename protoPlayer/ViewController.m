@@ -124,6 +124,10 @@
     return;
 }
 
+-(IBAction)volumeSlider:(id)sender
+{
+    [ourPlayer setMasterVolume:[sender floatValue]];
+}
 
 -(void)setModPosition:(int)ourValue
 {

@@ -18,10 +18,10 @@ Module *ourModule;
     IBOutlet NSTextField *moduleName;
     IBOutlet NSTextField *patternRow;
     IBOutlet NSSlider *musicSlider;
-    
 }
 -(IBAction)playbackControl:(id)sender;
 -(IBAction)loadProto:(id)sender;
+-(IBAction)volumeSlider:(id)sender;
 -(void)setModPosition:(int)ourValue;
 -(void)showPosition;
 
