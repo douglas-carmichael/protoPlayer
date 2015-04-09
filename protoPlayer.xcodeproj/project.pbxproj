@@ -23,11 +23,11 @@
 		A31AD86A1A71748900E48A59 /* media-skip-forward.png in Resources */ = {isa = PBXBuildFile; fileRef = A31AD8621A71748900E48A59 /* media-skip-forward.png */; };
 		A3282F691A72AE9F005F33A7 /* xmpPlayer.m in Sources */ = {isa = PBXBuildFile; fileRef = A3282F631A72AE9F005F33A7 /* xmpPlayer.m */; };
 		A3282F6A1A72AE9F005F33A7 /* TPCircularBuffer.c in Sources */ = {isa = PBXBuildFile; fileRef = A3282F651A72AE9F005F33A7 /* TPCircularBuffer.c */; };
-		A3282F6B1A72AE9F005F33A7 /* libxmp.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A3282F681A72AE9F005F33A7 /* libxmp.a */; };
 		A3680A971A848E1400467A65 /* TimeScrubberSlider.m in Sources */ = {isa = PBXBuildFile; fileRef = A3680A961A848E1400467A65 /* TimeScrubberSlider.m */; };
 		A37412001A77243500EA9B76 /* folder-open.png in Resources */ = {isa = PBXBuildFile; fileRef = A37411FF1A77243500EA9B76 /* folder-open.png */; };
 		A37412021A77246300EA9B76 /* document-open.png in Resources */ = {isa = PBXBuildFile; fileRef = A37412011A77246300EA9B76 /* document-open.png */; };
 		A376FA931AAD631E007CE9DA /* Module.m in Sources */ = {isa = PBXBuildFile; fileRef = A376FA921AAD631E007CE9DA /* Module.m */; };
+		A3D4153E1AD7426300DB1DED /* libxmp.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A3D4153D1AD7426300DB1DED /* libxmp.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -66,14 +66,14 @@
 		A3282F641A72AE9F005F33A7 /* xmpPlayerErrors.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = xmpPlayerErrors.h; sourceTree = "<group>"; };
 		A3282F651A72AE9F005F33A7 /* TPCircularBuffer.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = TPCircularBuffer.c; sourceTree = "<group>"; };
 		A3282F661A72AE9F005F33A7 /* TPCircularBuffer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TPCircularBuffer.h; sourceTree = "<group>"; };
-		A3282F671A72AE9F005F33A7 /* xmp.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = xmp.h; sourceTree = "<group>"; };
-		A3282F681A72AE9F005F33A7 /* libxmp.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libxmp.a; sourceTree = "<group>"; };
 		A3680A951A848E1400467A65 /* TimeScrubberSlider.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TimeScrubberSlider.h; sourceTree = "<group>"; };
 		A3680A961A848E1400467A65 /* TimeScrubberSlider.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TimeScrubberSlider.m; sourceTree = "<group>"; };
 		A37411FF1A77243500EA9B76 /* folder-open.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "folder-open.png"; sourceTree = "<group>"; };
 		A37412011A77246300EA9B76 /* document-open.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "document-open.png"; sourceTree = "<group>"; };
 		A376FA911AAD631E007CE9DA /* Module.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Module.h; sourceTree = "<group>"; };
 		A376FA921AAD631E007CE9DA /* Module.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Module.m; sourceTree = "<group>"; };
+		A3D4153C1AD7425C00DB1DED /* xmp.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = xmp.h; sourceTree = "<group>"; };
+		A3D4153D1AD7426300DB1DED /* libxmp.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libxmp.a; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -81,7 +81,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				A3282F6B1A72AE9F005F33A7 /* libxmp.a in Frameworks */,
+				A3D4153E1AD7426300DB1DED /* libxmp.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -137,9 +137,9 @@
 				A3282F641A72AE9F005F33A7 /* xmpPlayerErrors.h */,
 				A3282F651A72AE9F005F33A7 /* TPCircularBuffer.c */,
 				A3282F661A72AE9F005F33A7 /* TPCircularBuffer.h */,
+				A3D4153C1AD7425C00DB1DED /* xmp.h */,
+				A3D4153D1AD7426300DB1DED /* libxmp.a */,
 				A376FA941AAD6323007CE9DA /* Module class */,
-				A3282F671A72AE9F005F33A7 /* xmp.h */,
-				A3282F681A72AE9F005F33A7 /* libxmp.a */,
 				A31AD86C1A71749900E48A59 /* Tango Media Icons */,
 				A31AD8391A716DEC00E48A59 /* Info.plist */,
 				A31AD83D1A716DEC00E48A59 /* main.m */,

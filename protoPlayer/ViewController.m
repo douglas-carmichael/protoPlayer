@@ -126,6 +126,7 @@
 
 -(IBAction)volumeSlider:(id)sender
 {
+    NSLog(@"volumeSlider setting: %f", [sender floatValue]);
     [ourPlayer setMasterVolume:[sender floatValue]];
 }
 

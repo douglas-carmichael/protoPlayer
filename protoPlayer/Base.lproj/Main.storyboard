@@ -198,7 +198,7 @@
                             </slider>
                             <slider verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="OKg-3z-m0U">
                                 <rect key="frame" x="87" y="69" width="399" height="21"/>
-                                <sliderCell key="cell" state="on" alignment="left" maxValue="1" tickMarkPosition="above" sliderType="linear" id="cuU-D2-BBZ"/>
+                                <sliderCell key="cell" continuous="YES" state="on" alignment="left" maxValue="1" tickMarkPosition="above" sliderType="linear" id="cuU-D2-BBZ"/>
                                 <connections>
                                     <action selector="volumeSlider:" target="XfG-lQ-9wD" id="FvW-7e-8Vp"/>
                                 </connections>

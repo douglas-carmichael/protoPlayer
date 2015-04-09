@@ -5,11 +5,11 @@
 extern "C" {
 #endif
 
-#define XMP_VERSION "4.3.4"
-#define XMP_VERCODE 0x040304
+#define XMP_VERSION "4.3.8"
+#define XMP_VERCODE 0x040308
 #define XMP_VER_MAJOR 4
 #define XMP_VER_MINOR 3
-#define XMP_VER_RELEASE 4
+#define XMP_VER_RELEASE 8
 
 #if defined(_WIN32) && !defined(__CYGWIN__)
 # if defined(BUILDING_STATIC)
@@ -104,6 +104,8 @@ struct xmp_channel {
 	int vol;			/* Channel volume */
 #define XMP_CHANNEL_SYNTH	(1 << 0)  /* Channel is synthesized */
 #define XMP_CHANNEL_MUTE  	(1 << 1)  /* Channel is muted */
+#define XMP_CHANNEL_SPLIT	(1 << 2)  /* Split Amiga channel in bits 5-4 */
+#define XMP_CHANNEL_SURROUND	(1 << 4)  /* Surround channel */
 	int flg;			/* Channel flags */
 };
 
@@ -169,7 +171,7 @@ struct xmp_instrument {
 		int vde;		/* Vibrato depth */
 		int vra;		/* Vibrato rate */
 		int vsw;		/* Vibrato sweep */
-		int rvv;		/* Random volume variation (IT) */
+		int rvv;		/* Random volume/pan variation (IT) */
 		int sid;		/* Sample number */
 #define XMP_INST_NNA_CUT	0x00
 #define XMP_INST_NNA_CONT	0x01
@@ -230,7 +232,7 @@ struct xmp_module {
 	struct xmp_track **xxt;		/* Tracks */
 	struct xmp_instrument *xxi;	/* Instruments */
 	struct xmp_sample *xxs;		/* Samples */
-	struct xmp_channel xxc[64];	/* Channel info */
+	struct xmp_channel xxc[XMP_MAX_CHANNELS]; /* Channel info */
 	unsigned char xxo[XMP_MAX_MOD_LENGTH];	/* Orders */
 };
 
