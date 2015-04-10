@@ -126,13 +126,33 @@
 
 -(IBAction)volumeSlider:(id)sender
 {
-    NSLog(@"volumeSlider setting: %f", [sender floatValue]);
-    [ourPlayer setMasterVolume:[sender floatValue]];
+    float me = [sender floatValue];
+    float you = [self scaleRange:me];
+    NSLog(@"volumeSlider scaled: %f", you);
+    [ourPlayer setMasterVolume:you];
 }
 
 -(void)setModPosition:(int)ourValue
 {
     [ourPlayer seekPlayerToTime:ourValue];
+}
+
+-(float)scaleRange:(float)ourNumber
+{
+    
+    // From:
+    // http://stackoverflow.com/questions/10696794/objective-c-map-one-number-range-to-another
+    
+    CGFloat const inMin = 0.0;
+    CGFloat const inMax = 10.0;
+    
+    CGFloat const outMin = 0.0;
+    CGFloat const outMax = 1.0;
+    
+    CGFloat in = ourNumber;
+    CGFloat out = outMin + (outMax - outMin) * (in - inMin) / (inMax - inMin);
+    
+    return out;
 }
 
 -(void)showPosition

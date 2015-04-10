@@ -87,7 +87,7 @@
         <scene sceneID="hIz-AP-VOD">
             <objects>
                 <viewController id="XfG-lQ-9wD" customClass="ViewController" sceneMemberID="viewController">
-                    <view key="view" id="m2S-Jp-Qdl">
+                    <view key="view" wantsLayer="YES" id="m2S-Jp-Qdl">
                         <rect key="frame" x="0.0" y="0.0" width="564" height="148"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <subviews>
@@ -197,8 +197,8 @@
                                 </connections>
                             </slider>
                             <slider verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="OKg-3z-m0U">
-                                <rect key="frame" x="87" y="69" width="399" height="21"/>
-                                <sliderCell key="cell" continuous="YES" state="on" alignment="left" maxValue="1" tickMarkPosition="above" sliderType="linear" id="cuU-D2-BBZ"/>
+                                <rect key="frame" x="83" y="84" width="399" height="21"/>
+                                <sliderCell key="cell" continuous="YES" state="on" alignment="left" maxValue="10" tickMarkPosition="below" sliderType="linear" id="cuU-D2-BBZ"/>
                                 <connections>
                                     <action selector="volumeSlider:" target="XfG-lQ-9wD" id="FvW-7e-8Vp"/>
                                 </connections>

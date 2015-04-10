@@ -22,6 +22,7 @@ Module *ourModule;
 -(IBAction)playbackControl:(id)sender;
 -(IBAction)loadProto:(id)sender;
 -(IBAction)volumeSlider:(id)sender;
+-(float)scaleRange:(float)ourNumber;
 -(void)setModPosition:(int)ourValue;
 -(void)showPosition;
 
