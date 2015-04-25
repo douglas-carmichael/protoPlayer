@@ -123,7 +123,7 @@
                                       sizeof(streamFormat));
         
         // Calculate our buffer size based on sample rate/bytes per frame
-        int ourBufferSize = (streamFormat.mSampleRate * streamFormat.mBytesPerFrame) / 4;
+        int ourBufferSize = (streamFormat.mSampleRate * streamFormat.mBytesPerFrame) / 2;
         // Set up our circular buffer
         if(!TPCircularBufferInit(&ourClassPlayer.ourBuffer, ourBufferSize))
         {
